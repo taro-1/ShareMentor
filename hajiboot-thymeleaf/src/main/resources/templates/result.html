@@ -1,41 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>File Upload</title>
+<meta charset="UTF-8">
+<title>result.html</title>
 </head>
 <body>
-<div>
-  <form id="form" enctype="multipart/form-data">
-    <p><input type="file" name="file"></p>
-    <p><input type="button" id="upload" value="アップロード"></p>
-  </form>
-  <span id="result" style="padding:3px;"></span>
-</div>
+<form method="post" action="result">
+  <p>日時</p>
+  <p>色</p>
+  <p>RGB値</p>
+  <p>判定した画像</p>
+</form>
 </body>
-<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
-<script type="text/javascript">
-$(function() {
-  // 
-  $('#upload').click(function() {
-    var formData = new FormData(
-      $('#form').get()[0]
-    );
-    $.ajax({
-      url:'/upload',
-      method:'post',
-      data:formData,
-      processData:false,
-      contentType:false,
-      cache: false
-    }).done(function(data, status, jqxhr) {
-      $('#result').text('結果：成功');
-    }).fail(function(data, status, jqxhr) {
-      $('#result').text('結果：失敗');
-    }); 
-  });
-});
-</script>
 </html>
