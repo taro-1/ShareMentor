@@ -1,24 +1,29 @@
 package com.example.hajibootthymeleaf;
 
-import java.applet.Applet;
-import java.awt.Graphics;
+
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import org.springframework.ui.Model;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class ResultController {
 
 	@PostMapping("/result")
-public String result() throws IOException {
-            String filePath = "c:\\test\\test.jpeg";
+public String result(ImageForm imageForm,Model model) throws IOException {
+		
+		String originalFilename = imageForm.getImage().getOriginalFilename();
+            String filePath = "c:\\test\\" + originalFilename;
  
-            /** 
+            /*
                        * 画像ファイルを読み込む
              */
             BufferedImage img = ImageIO.read(new File(filePath));
@@ -31,10 +36,10 @@ public String result() throws IOException {
             /*
                        * 取得した色を標準出力
              */
-            System.out.println("R:" + color.getRed());
-            System.out.println("G:" + color.getGreen());
-            System.out.println("B:" + color.getBlue());
-            System.out.println("A:" + color.getAlpha());
+            String rgb = ("R:" + color.getRed()+"G:" + color.getGreen()+"B:" + color.getBlue());
+            model.addAttribute("rgb", rgb);
+            model.addAttribute("image", originalFilename);
+            
             return "result";
     }
 		

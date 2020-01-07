@@ -4,6 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>upload.html</title>
+    <style type="text/css">
+      form{
+        display: inline-block;
+        margin: 0 10px;
+      }
+    </style>
 </head>
 
 <body>
@@ -12,6 +18,11 @@
         ファイルを選択： <input type="file" th:field="*{image}" /><br /> <input type="submit" value="送信する" />
     <img th:src="${base64image}"/>
     </form>
+    <form method="post" action="result">
+       　  <input type="submit" value="色を判定" />
+    </form>
+    <form method="post" action="menu">
+       　  <input type="submit" value="メニュー画面へ" />
+    </form>
 </body>
-
 </html>
