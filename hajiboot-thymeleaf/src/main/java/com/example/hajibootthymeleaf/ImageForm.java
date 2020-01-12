@@ -1,7 +1,10 @@
 package com.example.hajibootthymeleaf;
 
-import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+import lombok.Data;
+@Data
 public class ImageForm {
 
 
@@ -14,5 +17,5 @@ public class ImageForm {
     public void setImage(MultipartFile image) {
         this.image = image;
     }
-
+    private List<MultipartFile> file;    
 }

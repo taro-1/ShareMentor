@@ -11,12 +11,18 @@ import javax.imageio.ImageIO;
 import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
 public class ResultController {
 
+    @ModelAttribute
+    public ImageForm setForm() {
+        return new ImageForm();
+    }
+	
 	@PostMapping("/result")
 public String result(ImageForm imageForm,Model model) throws IOException {
 		
