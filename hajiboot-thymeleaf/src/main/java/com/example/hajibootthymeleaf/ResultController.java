@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -24,10 +25,10 @@ public class ResultController {
     }
 	
 	@PostMapping("/result")
-public String result(ImageForm imageForm,Model model) throws IOException {
+public String result(Model model, MultipartFile image) throws IOException {
 		
-		String originalFilename = imageForm.getImage().getOriginalFilename();
-            String filePath = "c:\\test\\" + originalFilename;
+		String originalFilename = image.getOriginalFilename();
+            String filePath = "C:\\upload\\files" + originalFilename;
  
             /*
                        * 画像ファイルを読み込む
@@ -48,25 +49,4 @@ public String result(ImageForm imageForm,Model model) throws IOException {
             
             return "result";
     }
-		
-/*<applet code="App9.class" width="400" height="200"></applet>*/
-
-//public class App9 extends Applet {
-//	public void paint(Graphics g) {
-//		int x = 0;
-//		Color co[] = { Color.black , Color.blue , 
-//			Color.cyan , Color.darkGray ,
-//			Color.gray , Color.green ,
-//			Color.lightGray , Color.magenta ,
-//			Color.orange , Color.pink ,
-//			Color.red , Color.white , 
-//			Color.yellow
-//		};
-//		for (int count = 0 ; count < 13 ; count++) {
-//			g.setColor(co[count]);
-//			g.fillRect(x , 0 , 30 , 200);
-//			x += 30;
-//		}
-//	}
-//	}
 }

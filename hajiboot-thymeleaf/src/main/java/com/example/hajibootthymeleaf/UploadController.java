@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
@@ -59,11 +58,9 @@ public class UploadController {
         }
       }
 
-      private void savefiles(List<MultipartFile> multipartFiles) {
+      private void savefiles(MultipartFile image) {
           createDirectory();
-          for (MultipartFile file : multipartFiles) {
-              savefile(file);
-          }
+              savefile(image);
       }
 	
     @ModelAttribute
@@ -92,7 +89,7 @@ public class UploadController {
      */
     @PostMapping("/upload")
     public String upload(ImageForm imageForm, Model model) throws Exception {
-    	savefiles(imageForm.getFile());
+    	savefiles(imageForm.getImage());
         System.out.println(imageForm.getImage().getSize());
         StringBuffer data = new StringBuffer();
         String base64 = new String(Base64.encodeBase64(imageForm.getImage().getBytes()),"ASCII");
