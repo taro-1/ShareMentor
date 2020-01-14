@@ -27,8 +27,12 @@ public class ResultController {
 	@PostMapping("/result")
 public String result(Model model, MultipartFile image) throws IOException {
 		
-		String originalFilename = image.getOriginalFilename();
-            String filePath = "C:\\upload\\files" + originalFilename;
+		 /*
+		  * File名の一覧を取得する
+		  */
+        File file = new File("C:\\upload\\files");
+        File files[] = file.listFiles();
+        String filePath = "C:\\upload\\files\\" + files[0].getName();
  
             /*
                        * 画像ファイルを読み込む
@@ -45,7 +49,14 @@ public String result(Model model, MultipartFile image) throws IOException {
              */
             String rgb = ("R:" + color.getRed()+"G:" + color.getGreen()+"B:" + color.getBlue());
             model.addAttribute("rgb", rgb);
-            model.addAttribute("image", originalFilename);
+            model.addAttribute("image", filePath);
+            
+            
+            /*
+             * deleteメソッドを使用してファイルを削除する
+             */
+            File deleteFile = new File(filePath);
+            deleteFile.delete();   
             
             return "result";
     }
