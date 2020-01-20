@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import service.MembersService;
+import service.HistoryService;
 
 
+@RestController
 @Controller
 @RequiredArgsConstructor
 public class ResultController {
@@ -27,12 +29,8 @@ public class ResultController {
         return new ImageForm();
     }
     
-    @PostMapping
-    public String create() {
-        return membersService.create(null, null);
-    }
 	
-    private final MembersService membersService;
+    private final HistoryService historyService;
     
 	@PostMapping("/result")
 public String result(Model model) throws IOException {
@@ -61,7 +59,7 @@ public String result(Model model) throws IOException {
             model.addAttribute("rgb", rgb);
             model.addAttribute("image", filePath);
             
-            membersService.create(rgb, filePath);
+            historyService.create(rgb, filePath);
             
             /*
              * deleteメソッドを使用してファイルを削除する
