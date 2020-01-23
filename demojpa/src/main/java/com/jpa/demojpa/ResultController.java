@@ -9,19 +9,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.springframework.ui.Model;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import lombok.RequiredArgsConstructor;
-import service.HistoryService;
+import com.jpa.demojpa.service.HistoryService;
 
 
-@RestController
 @Controller
-@RequiredArgsConstructor
 public class ResultController {
 
     @ModelAttribute
@@ -29,10 +25,10 @@ public class ResultController {
         return new ImageForm();
     }
     
-	
-    private final HistoryService historyService;
+	@Autowired
+    HistoryService historyService;
     
-	@PostMapping("/result")
+	@RequestMapping("/result")
 public String result(Model model) throws IOException {
 
 		 /*
