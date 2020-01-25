@@ -3,12 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <title>history.html</title>
+    <style type="text/css">
+      p{
+    display: inline-block;
+    background-color:  #ccc;  
+    padding:  20px;    
+    height: 100px;
+      }
+    </style>
   </head>
   <body>
-    <p>日付</p>
-    <p>色</p>
-    <p>RGB値</p>
-    <p>判定した画像</p>
+  <table>
+  	<tr>
+		<td>日付</td>
+		<td>RGB値</td>
+		<td>判定した画像</td>
+	</tr>
+    	<tr th:each="history: ${histories}">
+		<td th:text="${history.date}"></td>
+		<td th:text="${history.rgb}"></td>
+		<td th:text="${history.image}"></td>
+	</tr>	
+
+</table>
     <form method="post" action="menu">
        　  <input type="submit" value="メニュー画面へ" />
     </form>

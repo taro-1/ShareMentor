@@ -11,8 +11,8 @@ import com.jpa.demojpa.domain.ResultRepository;
 
 @Service
 @RequiredArgsConstructor
-public class HistoryService {
-    private final ResultRepository HistoryRepository;
+public class ResultService {
+    private final ResultRepository resultRepository;
     
     public void create(String rgb, String filePath) {
     	Date date = new Date(); 
@@ -20,6 +20,6 @@ public class HistoryService {
         history.setDate(date);
         history.setRgb(rgb);
         history.setImage(filePath);
-        HistoryRepository.save(history);
+        resultRepository.save(history);
     }
 }

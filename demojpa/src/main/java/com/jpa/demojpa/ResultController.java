@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jpa.demojpa.service.HistoryService;
+import com.jpa.demojpa.service.ResultService;
 
 
 @Controller
@@ -26,7 +26,7 @@ public class ResultController {
     }
     
 	@Autowired
-    HistoryService historyService;
+    ResultService resultService;
     
 	@RequestMapping("/result")
 public String result(Model model) throws IOException {
@@ -55,7 +55,7 @@ public String result(Model model) throws IOException {
             model.addAttribute("rgb", rgb);
             model.addAttribute("image", filePath);
             
-            historyService.create(rgb, filePath);
+            resultService.create(rgb, filePath);
             
             /*
              * deleteメソッドを使用してファイルを削除する
