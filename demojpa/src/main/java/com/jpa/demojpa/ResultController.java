@@ -27,7 +27,7 @@ public class ResultController {
     
 	@Autowired
     ResultService resultService;
-    
+		    	
 	@RequestMapping("/result")
 public String result(Model model) throws IOException {
 
@@ -42,20 +42,46 @@ public String result(Model model) throws IOException {
                        * 画像ファイルを読み込む
              */
             BufferedImage img = ImageIO.read(new File(filePath));
+            
+            
+            
  
             /*
                         * 中心の色を取得
              */      
-            Color color = new Color(img.getRGB(0, 0));
+            Color color = new Color(img.getRGB(128, 128));
  
             /*
                        * 取得した色を標準出力
              */
-            String rgb = ("R:" + color.getRed()+"G:" + color.getGreen()+"B:" + color.getBlue());
+			String rgb = ("R:" + color.getRed()+"G:" + color.getGreen()+"B:" + color.getBlue());
             model.addAttribute("rgb", rgb);
             model.addAttribute("image", filePath);
             
             resultService.create(rgb, filePath);
+            
+            /*
+             * 赤、緑、青の中で一番強い要素を出力
+             */
+            int red = color.getRed();
+            int green = color.getGreen();
+            int blue = color.getBlue();
+            int max;
+            String component;
+            
+            max = red;
+            if(green > max) max = green;
+            if(blue > max) max = blue;
+            
+            component = "赤";
+            if(max == green) component = "緑";
+            if(max == blue) component = "青";
+            
+            if(red == blue)component = "なし";
+            if(blue == green)component = "なし";
+            if(green == red)component = "なし";
+            
+            model.addAttribute("component", component);
             
             /*
              * deleteメソッドを使用してファイルを削除する
