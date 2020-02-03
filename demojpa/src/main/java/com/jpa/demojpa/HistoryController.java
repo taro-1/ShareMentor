@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpa.demojpa.domain.HistoryRepository;
-import com.jpa.demojpa.service.HistoryService;
-import com.jpa.demojpa.service.ResultService;
 
 @Controller
 
@@ -20,7 +18,7 @@ public class HistoryController {
 	
 	@RequestMapping("/history")
 	public String menu(Model model) {			
-			List histories = (List) historyRepository.findAll();
+			List<?> histories = (List<?>) historyRepository.findAll();
 			model.addAttribute("histories", histories);
 			return "history";
 			}

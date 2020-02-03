@@ -67,19 +67,23 @@ public String result(Model model) throws IOException {
             int green = color.getGreen();
             int blue = color.getBlue();
             int max;
-            String component;
+            String component, charRed, charGreen, charBlue, none;
+            charRed = "赤";
+            charGreen = "緑";
+            charBlue = "青";
+            none = "なし";
             
             max = red;
             if(green > max) max = green;
             if(blue > max) max = blue;
             
-            component = "赤";
-            if(max == green) component = "緑";
-            if(max == blue) component = "青";
+            component = charRed;
+            if(max == green) component = charGreen;
+            if(max == blue) component = charBlue;
             
-            if(red == blue)component = "なし";
-            if(blue == green)component = "なし";
-            if(green == red)component = "なし";
+            if(red == blue)component = none;
+            if(blue == green)component = none;
+            if(green == red)component = none;
             
             model.addAttribute("component", component);
             
