@@ -9,13 +9,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpa.demojpa.service.ResultService;
-
+import com.jpa.demojpa.UploadController;
 
 @Controller
 public class ResultController {
@@ -27,9 +28,11 @@ public class ResultController {
     
 	@Autowired
     ResultService resultService;
+	@Autowired
+    UploadController uploadController;
 		    	
 	@RequestMapping("/result")
-public String result(Model model) throws IOException {
+public String result(Model model, ModelMap modelMap) throws IOException {
 
 		 /*
 		  * File名の一覧を取得する
@@ -41,14 +44,12 @@ public String result(Model model) throws IOException {
             /*
                        * 画像ファイルを読み込む
              */
-            BufferedImage img = ImageIO.read(new File(filePath));
-            
-            
-            
+            BufferedImage img = ImageIO.read(new File(filePath));        
  
             /*
                         * 中心の色を取得
-             */      
+             */
+            
             Color color = new Color(img.getRGB(128, 128));
  
             /*
