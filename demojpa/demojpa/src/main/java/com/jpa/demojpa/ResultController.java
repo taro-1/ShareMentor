@@ -9,7 +9,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +31,7 @@ public class ResultController {
     UploadController uploadController;
 		    	
 	@RequestMapping("/result")
-public String result(Model model, ModelMap modelMap) throws IOException {
+public String result(Model model) throws IOException {
 
 		 /*
 		  * File名の一覧を取得する
@@ -49,8 +48,8 @@ public String result(Model model, ModelMap modelMap) throws IOException {
             /*
                         * 中心の色を取得
              */
-            
-            Color color = new Color(img.getRGB(128, 128));
+            int[] position = uploadController.position();
+            Color color = new Color(img.getRGB(position[0], position[1]));
  
             /*
                        * 取得した色を標準出力

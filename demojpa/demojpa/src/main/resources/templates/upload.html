@@ -15,9 +15,6 @@
 </head>
 
 <body>
-    <p>判定位置 ：</p>
-    <p th:text="'X ' + ${x}"></p>
-    <p th:text="'Y ' + ${y}"><br></p>
     <!-- formにenctypeを設定しない場合、画像の中身が送信されないため注意 -->
     <form th:action="@{/upload}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
         ファイルを選択： <input th:field="*{image}" type="file" /><br /> 
@@ -27,7 +24,7 @@
     <form th:action="@{/position}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
        　  <input type="submit" value="判定位置を変更" />
     </form>
-    <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
+    <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data" >
        　  <input type="submit" value="色を判定" />
     </form>
     <form method="post" action="menu">

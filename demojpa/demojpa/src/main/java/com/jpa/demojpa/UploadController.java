@@ -13,7 +13,6 @@ import java.util.Random;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,16 +84,17 @@ public class UploadController {
      * @return　upload.html
      */
     @RequestMapping("/position")
-    public String position(ModelMap modelMap) {
+    public int[] position() {
     	int X = 128;
     	int Y = 128;
     	Random rand = new Random();
     	Random rand2 = new Random();
     	X = rand.nextInt(255);
     	Y = rand2.nextInt(255);
-    	modelMap.addAttribute("x", X);
-    	modelMap.addAttribute("y", Y);
-        return "upload";
+    	int[] array = new int[2];
+        array[0] = X;
+        array[1] = Y;
+        return array;
     }
 
     /**
