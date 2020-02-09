@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>result.html</title>
+</head>
+<body>
+<form method="post" action="result">
+  <p>判定した画像</p>
+  <p th:text="${image}"/></p>
+  <p>最も強い三原色の成分</p>
+  <p th:text="${component}"></p>
+  <p>RGB値</p>
+  <p th:text="${rgb}"></p>
+</form>
+  <form method="post" action="first">
+       　  <input type="submit" value="戻る" />
+  </form>
+</body>
+</html>

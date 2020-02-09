@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>upload.html</title>
+    <style type="text/css">
+      form{
+        display: inline-block;
+        margin: 0 10px;
+      }p{
+        float: left;
+       }
+    </style>
+</head>
+
+<body>
+    <p>判定位置 ：</p>
+    <p th:text="'X ' + ${x}"></p>
+    <p th:text="'Y ' + ${y}"><br></p>
+    <!-- formにenctypeを設定しない場合、画像の中身が送信されないため注意 -->
+    <form th:action="@{/upload}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
+        ファイルを選択： <input th:field="*{image}" type="file" /><br /> 
+    <input type="submit" value="送信する" />
+    <img th:src="${base64image}"/>
+    </form>
+    <form th:action="@{/position}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
+       　  <input type="submit" value="判定位置を変更" />
+    </form>
+    <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
+       　  <input type="submit" value="色を判定" />
+    </form>
+    <form method="post" action="menu">
+       　  <input type="submit" value="メニュー画面へ" />
+    </form>
+</body>
+</html>
