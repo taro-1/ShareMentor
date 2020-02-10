@@ -18,11 +18,15 @@
 		<td>日付</td>
 		<td>RGB値</td>
 		<td>判定した画像</td>
+		<td>判定したX座標</td>
+		<td>判定したY座標</td>
 	</tr>
     	<tr th:each="history: ${histories}">
 		<td th:text="${history.date}"></td>
 		<td th:text="${history.rgb}"></td>
 		<td th:text="${history.image}"></td>
+		<td th:text="${history.x}"></td>
+		<td th:text="${history.y}"></td>
 	</tr>	
 
 </table>

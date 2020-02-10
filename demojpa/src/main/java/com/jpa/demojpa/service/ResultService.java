@@ -14,12 +14,14 @@ import com.jpa.demojpa.domain.ResultRepository;
 public class ResultService {
     private final ResultRepository resultRepository;
     
-    public void create(String rgb, String filePath) {
+    public void create(String rgb, String filePath, int x, int y) {
     	Date date = new Date(); 
         History history = new History();
         history.setDate(date);
         history.setRgb(rgb);
         history.setImage(filePath);
+        history.setX(x);
+        history.setY(y);
         resultRepository.save(history);
     }
 }

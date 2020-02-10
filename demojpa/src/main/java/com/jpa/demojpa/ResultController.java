@@ -6,17 +6,17 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
+
 import javax.imageio.ImageIO;
 
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpa.demojpa.service.ResultService;
-import com.jpa.demojpa.UploadController;
 
 @Controller
 public class ResultController {
@@ -28,11 +28,9 @@ public class ResultController {
     
 	@Autowired
     ResultService resultService;
-	@Autowired
-    UploadController uploadController;
 		    	
 	@RequestMapping("/result")
-public String result(Model model, ModelMap modelMap) throws IOException {
+public String result(Model model) throws IOException {
 
 		 /*
 		  * File名の一覧を取得する
@@ -49,8 +47,13 @@ public String result(Model model, ModelMap modelMap) throws IOException {
             /*
                         * 中心の色を取得
              */
-            
-            Color color = new Color(img.getRGB(128, 128));
+        	Random rand = new Random();
+        	Random rand2 = new Random();
+        	int x = rand.nextInt(128);
+        	int y = rand2.nextInt(128);
+            Color color = new Color(img.getRGB(x, y));
+            model.addAttribute("x", x);
+            model.addAttribute("y", y);
  
             /*
                        * 取得した色を標準出力
@@ -59,7 +62,7 @@ public String result(Model model, ModelMap modelMap) throws IOException {
             model.addAttribute("rgb", rgb);
             model.addAttribute("image", filePath);
             
-            resultService.create(rgb, filePath);
+            resultService.create(rgb, filePath, x, y);
             
             /*
              * 赤、緑、青の中で一番強い要素を出力

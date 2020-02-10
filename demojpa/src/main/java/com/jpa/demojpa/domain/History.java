@@ -20,4 +20,6 @@ public class History {
     private String rgb;
     private Date date;
     private String image;
+    private int x;
+    private int y;
 }
