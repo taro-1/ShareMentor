@@ -14,7 +14,10 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 public class History {
-    @Id
+	/**
+	 * DBのカラムです
+	 */
+	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String rgb;

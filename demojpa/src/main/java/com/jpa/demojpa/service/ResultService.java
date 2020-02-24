@@ -14,7 +14,14 @@ import com.jpa.demojpa.domain.ResultRepository;
 public class ResultService {
     private final ResultRepository resultRepository;
     
-    public void create(String rgb, String filePath, int x, int y) {
+    /**
+     * 判定結果を登録します
+     * @param rgb 判定結果のRGB値
+     * @param filePath 判定した画像のファイルパス
+     * @param x 判定したX座標
+     * @param y 判定したY座標
+     */
+    public void insert(String rgb, String filePath, int x, int y) {
     	Date date = new Date(); 
         History history = new History();
         history.setDate(date);

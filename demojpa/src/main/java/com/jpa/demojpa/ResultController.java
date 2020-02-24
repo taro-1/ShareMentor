@@ -21,82 +21,73 @@ import com.jpa.demojpa.service.ResultService;
 @Controller
 public class ResultController {
 
+	/**
+	 * 結果画面を表示します
+	 * @return result 結果画面
+	 */
+	
     @ModelAttribute
     public ImageForm setForm() {
         return new ImageForm();
     }
     
-	@Autowired
+    @Autowired
     ResultService resultService;
 		    	
-	@RequestMapping("/result")
-public String result(Model model) throws IOException {
+    @RequestMapping("/result")
+    public String result(Model model) throws IOException {
 
-		 /*
-		  * File名の一覧を取得する
-		  */
+    	// ファイル名の一覧を取得
         File file = new File("C:\\upload\\files");
         File files[] = file.listFiles();
         String filePath = "C:\\upload\\files\\" + files[0].getName();
  
-            /*
-                       * 画像ファイルを読み込む
-             */
-            BufferedImage img = ImageIO.read(new File(filePath));        
+        // 画像を読み込む
+        BufferedImage img = ImageIO.read(new File(filePath));        
  
-            /*
-                        * 中心の色を取得
-             */
-        	Random rand = new Random();
-        	Random rand2 = new Random();
-        	int x = rand.nextInt(128);
-        	int y = rand2.nextInt(128);
-            Color color = new Color(img.getRGB(x, y));
-            model.addAttribute("x", x);
-            model.addAttribute("y", y);
+        // ランダムな位置の色を取得
+        int coordinate1 = new Random().nextInt(128);
+        int coordinate2 = new Random().nextInt(128);
+        Color color = new Color(img.getRGB(coordinate1, coordinate2));
+        model.addAttribute("x", coordinate1);
+        model.addAttribute("y", coordinate2);
  
-            /*
-                       * 取得した色を標準出力
-             */
-			String rgb = ("R:" + color.getRed()+"G:" + color.getGreen()+"B:" + color.getBlue());
-            model.addAttribute("rgb", rgb);
-            model.addAttribute("image", filePath);
             
-            resultService.create(rgb, filePath, x, y);
+        // 取得した色を出力
+		String rgb = ("R:" + color.getRed()+"G:" + color.getGreen()+"B:" + color.getBlue());
+        model.addAttribute("rgb", rgb);
+           
+        // ファイルパスを出力
+        model.addAttribute("image", filePath);
+        resultService.insert(rgb, filePath, coordinate1, coordinate2);
             
-            /*
-             * 赤、緑、青の中で一番強い要素を出力
-             */
-            int red = color.getRed();
-            int green = color.getGreen();
-            int blue = color.getBlue();
-            int max;
-            String component, charRed, charGreen, charBlue, none;
-            charRed = "赤";
-            charGreen = "緑";
-            charBlue = "青";
-            none = "なし";
+        // 赤、緑、青の中で一番強い要素を出力
+        int red = color.getRed();
+        int green = color.getGreen();
+        int blue = color.getBlue();
+        String CharRed = "赤";
+        String CharGreen = "緑";
+        String CharBlue = "青";
+        String None = "なし";
             
-            max = red;
-            if(green > max) max = green;
-            if(blue > max) max = blue;
+        int max = red;
+        if(green > max) max = green;
+        if(blue > max) max = blue;
             
-            component = charRed;
-            if(max == green) component = charGreen;
-            if(max == blue) component = charBlue;
+        String component = CharRed;
+        if(max == green) component = CharGreen;
+        if(max == blue) component = CharBlue;
+           
+        if(red == blue)component = None;
+        if(blue == green)component = None;
+        if(green == red)component = None;
             
-            if(red == blue)component = none;
-            if(blue == green)component = none;
-            if(green == red)component = none;
+        model.addAttribute("component", component);
             
-            model.addAttribute("component", component);
+        // deleteメソッドを使用してファイルを削除する
+        File deleteFile = new File(filePath);
+        deleteFile.delete();   
             
-            /*
-             * deleteメソッドを使用してファイルを削除する
-             */
-            File deleteFile = new File(filePath);
-            deleteFile.delete();   
-            
-            return "result";
+        return "result";
     }
 }

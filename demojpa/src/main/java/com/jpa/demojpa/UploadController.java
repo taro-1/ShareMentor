@@ -20,48 +20,51 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class UploadController {
 
-    private String getExtension(String filename) {
+	/**
+	 * 入力した画像を表示します
+	 * @param filename ファイル名
+	 * @return upload 画像入力画面
+	 */
+	
+	private String getExtension(String filename) {
         int dot = filename.lastIndexOf(".");
         if (dot > 0) {
           return filename.substring(dot).toLowerCase();
-        }
-        return "";
-      }
-
-      private String getUploadFileName(String fileName) {
-
-          return fileName + "_" +
-                  DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")
-                      .format(LocalDateTime.now())
-                  + getExtension(fileName);
-      }
-
-      private void createDirectory() {
-          Path path = Paths.get("C:/upload/files");
-          if (!Files.exists(path)) {
-            try {
-              Files.createDirectory(path);
-            } catch (Exception e) {
-              //エラー処理は省略
-            }
           }
-      }
-
-      private void savefile(MultipartFile file) {
-        String filename = getUploadFileName(file.getOriginalFilename());
-        Path uploadfile = Paths.get("C:/upload/files/" + filename);
-        try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
-          byte[] bytes = file.getBytes();
-          os.write(bytes);
-        } catch (IOException e) {
-          //エラー処理は省略
+        return "";
         }
-      }
 
-      private void savefiles(MultipartFile image) {
-          createDirectory();
-              savefile(image);
-      }
+    private String getUploadFileName(String fileName) {
+    	return fileName + "_" + DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")
+    	.format(LocalDateTime.now()) + getExtension(fileName);
+    	}
+
+    private void createDirectory() {
+    	Path path = Paths.get("C:/upload/files");
+        if (!Files.exists(path)) {
+        	try {
+        	  Files.createDirectory(path);
+            } catch (Exception e) {
+        	  System.out.println("例外が発生しました");
+          	}
+          }
+        }
+
+    private void savefile(MultipartFile file) {
+    	String filename = getUploadFileName(file.getOriginalFilename());
+    	Path uploadfile = Paths.get("C:/upload/files/" + filename);
+    	try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
+    		byte[] bytes = file.getBytes();
+    		os.write(bytes);
+    		} catch (IOException e) {
+    			System.out.println("例外が発生しました");
+    		}
+    	}
+
+    private void savefiles(MultipartFile image) {
+    	createDirectory();
+    	savefile(image);
+    	}
 	
     @ModelAttribute
     public ImageForm setForm() {
@@ -79,24 +82,6 @@ public class UploadController {
     }
     
     /**
-     * 判定位置を変更
-     * @return　upload.html
-     */
-//    @RequestMapping("/position")
-//    public int[] position() {
-//    	int X = 128;
-//    	int Y = 128;
-//    	Random rand = new Random();
-//    	Random rand2 = new Random();
-//    	X = rand.nextInt(255);
-//    	Y = rand2.nextInt(255);
-//    	int[] array = new int[2];
-//        array[0] = X;
-//        array[1] = Y;
-//        return array;
-//    }
-
-    /**
      * アップロードされた画像データを取得し、base64でエンコードする
      * エンコードしたものを文字列に変更(同時に拡張子をここではjpegと指定)し次のhtmlに受け渡す
      * @param imageForm アップロードされたデータ
@@ -107,7 +92,6 @@ public class UploadController {
     @PostMapping("/upload")
     public String upload(ImageForm imageForm, Model model) throws Exception {
     	savefiles(imageForm.getImage());
-        System.out.println(imageForm.getImage().getSize());
         StringBuffer data = new StringBuffer();
         String base64 = new String(Base64.encodeBase64(imageForm.getImage().getBytes()),"ASCII");
         data.append("data:image/jpeg;base64,");
@@ -115,5 +99,4 @@ public class UploadController {
         model.addAttribute("base64image",data.toString());
         return "upload";
     }
-
 }

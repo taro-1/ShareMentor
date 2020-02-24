@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class MenuController {
 
+	/**
+	 * メニュー画面を表示します
+	 * @return menu メニュー画面
+	 */
 	@RequestMapping("/menu")
 	public String menu() {
 		return "menu";

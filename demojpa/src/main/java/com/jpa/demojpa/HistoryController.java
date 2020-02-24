@@ -16,11 +16,15 @@ public class HistoryController {
 	@Autowired
 	HistoryRepository historyRepository;
 	
+	/**
+	 * 履歴を表示します
+	 * @param model 
+	 * @return history 履歴画面
+	 */
 	@RequestMapping("/history")
-	public String menu(Model model) {			
-			List<?> histories = (List<?>) historyRepository.findAll();
-			model.addAttribute("histories", histories);
-			return "history";
-			}
+	public String menu(Model model) {
+		List<?> histories = (List<?>) historyRepository.findAll();
+		model.addAttribute("histories", histories);
+		return "history";
+		}
 	}
-

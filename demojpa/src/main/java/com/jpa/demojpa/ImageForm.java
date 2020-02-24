@@ -6,15 +6,16 @@ import lombok.Data;
 @Data
 public class ImageForm {
 
-
- MultipartFile image;
+	/**
+	 * 選択した画像のフォームクラスです
+	 */
+	MultipartFile image;
 
     public MultipartFile getImage() {
-        return image;
-    }
+    	return image;
+    	}
 
     public void setImage(MultipartFile image) {
-        this.image = image;
+    	this.image = image;
+    	}
     }
-//    private List<MultipartFile> file;    
-}
