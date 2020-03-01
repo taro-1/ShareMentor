@@ -13,24 +13,23 @@
     </style>
   </head>
   <body>
-  <table>
+  <table border="1">
   	<tr>
 		<td>日付</td>
-		<td>RGB値</td>
 		<td>判定した画像</td>
-		<td>判定したX座標</td>
-		<td>判定したY座標</td>
+		<td>RGB値</td>
+		<td>色を判定したX座標</td>
+		<td>色を判定したY座標</td>
 	</tr>
-    	<tr th:each="history: ${histories}">
+    <tr th:each="history: ${histories}">
 		<td th:text="${history.date}"></td>
-		<td th:text="${history.rgb}"></td>
 		<td th:text="${history.image}"></td>
+		<td th:text="${history.rgb}"></td>
 		<td th:text="${history.x}"></td>
 		<td th:text="${history.y}"></td>
 	</tr>	
-
-</table>
-    <form method="post" action="menu">
+  </table>
+    <form method="post" action="menu" style="position: absolute; left: 35%">
        　  <input type="submit" value="メニュー画面へ" />
     </form>
   </body>

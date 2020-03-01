@@ -54,12 +54,12 @@ public class ResultController {
  
             
         // 取得した色を出力
-		String rgb = ("R:" + color.getRed()+"G:" + color.getGreen()+"B:" + color.getBlue());
+		String rgb = ("R:" + color.getRed()+" G:" + color.getGreen()+" B:" + color.getBlue());
         model.addAttribute("rgb", rgb);
            
         // ファイルパスを出力
-        model.addAttribute("image", filePath);
-        resultService.insert(rgb, filePath, coordinate1, coordinate2);
+        model.addAttribute("image", files[0].getName());
+        resultService.insert(rgb, files[0].getName(), coordinate1, coordinate2);
             
         // 赤、緑、青の中で一番強い要素を出力
         int red = color.getRed();

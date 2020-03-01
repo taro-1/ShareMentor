@@ -2,6 +2,7 @@ package com.jpa.demojpa.service;
 
 import lombok.RequiredArgsConstructor;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -22,7 +23,8 @@ public class ResultService {
      * @param y 判定したY座標
      */
     public void insert(String rgb, String filePath, int x, int y) {
-    	Date date = new Date(); 
+    	SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+    	String date = df.format(new Date());
         History history = new History();
         history.setDate(date);
         history.setRgb(rgb);

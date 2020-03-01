@@ -3,8 +3,6 @@ package com.jpa.demojpa.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,8 +19,9 @@ public class History {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String rgb;
-    private Date date;
+    private String date;
     private String image;
+    
     private int x;
     private int y;
 }

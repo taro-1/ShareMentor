@@ -15,16 +15,15 @@
 </head>
 
 <body>
-    <!-- formにenctypeを設定しない場合、画像の中身が送信されないため注意 -->
     <form th:action="@{/upload}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
         ファイルを選択： <input th:field="*{image}" type="file" /><br /> 
-    <input type="submit" value="送信する" />
+    <input type="submit" value="表示する" />
     <img th:src="${base64image}"/>
     </form>
-    <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data" >
+    <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data" style="position: absolute; left: 30%; top: 1%" >
        　  <input type="submit" value="色を判定" />
     </form>
-    <form method="post" action="menu">
+    <form method="post" action="menu" style="position: absolute; left: 40%; top: 1%">
        　  <input type="submit" value="メニュー画面へ" />
     </form>
 </body>
