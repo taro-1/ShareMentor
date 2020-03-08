@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jpa.demojpa.domain.HistoryRepository;
 
+/**
+ * 履歴画面のコントローラークラス
+ */
 @Controller
-
 public class HistoryController {
 
 	@Autowired
@@ -26,5 +28,5 @@ public class HistoryController {
 		List<?> histories = (List<?>) historyRepository.findAll();
 		model.addAttribute("histories", histories);
 		return "history";
-		}
 	}
+}

@@ -3,8 +3,10 @@ package com.jpa.demojpa;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * メニュー画面のコントローラークラス
+ */
 @Controller
-
 public class MenuController {
 
 	/**

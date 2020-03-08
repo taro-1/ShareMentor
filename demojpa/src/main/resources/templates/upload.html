@@ -10,15 +10,15 @@
         margin: 0 10px;
       }p{
         float: left;
-       }
+      }
     </style>
 </head>
 
 <body>
     <form th:action="@{/upload}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
-        ファイルを選択： <input th:field="*{image}" type="file" /><br /> 
-    <input type="submit" value="表示する" />
-    <img th:src="${base64image}"/>
+            ファイルを選択： <input th:field="*{image}" type="file" /><br /> 
+     <input type="submit" value="表示する" />
+     <img th:src="${base64image}"/>
     </form>
     <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data" style="position: absolute; left: 30%; top: 1%" >
        　  <input type="submit" value="色を判定" />

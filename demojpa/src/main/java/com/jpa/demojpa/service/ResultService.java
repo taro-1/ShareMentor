@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.jpa.demojpa.domain.History;
 import com.jpa.demojpa.domain.ResultRepository;
 
+/**
+ * 結果画面のサービスクラス
+ */
 @Service
 @RequiredArgsConstructor
 public class ResultService {
@@ -22,7 +25,7 @@ public class ResultService {
      * @param x 判定したX座標
      * @param y 判定したY座標
      */
-    public void insert(String rgb, String filePath, int x, int y) {
+    public void regist(String rgb, String filePath, int x, int y) {
     	SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
     	String date = df.format(new Date());
         History history = new History();
