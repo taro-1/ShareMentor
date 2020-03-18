@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * メニュー画面のコントローラークラス
+ * メニュー画面のコントローラークラスです
  */
 @Controller
 public class MenuController {

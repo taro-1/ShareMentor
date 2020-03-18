@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 画像入力画面のコントローラークラス
+ * 画像入力画面のコントローラークラスです
  */
 @Controller
 public class UploadController {
 
 	/**
-	 * ファイル名のドット以降の部分を取得する
+	 * ファイル名本体を取得します
 	 * @param filename ファイル名
-	 * @return filename ドット以降のファイル名
+	 * @return filename ファイル名本体
 	 */
 	private String getExtension(String filename) {
         int dot = filename.lastIndexOf(".");
@@ -37,7 +37,7 @@ public class UploadController {
     }
 
 	/**
-	 * ファイル名に年月日日時を付与する
+	 * ファイル名に年月日日時を付与します
 	 * @param filename ファイル名
 	 * @return filename 年月日日時を付与したファイル名
 	 */
@@ -47,7 +47,7 @@ public class UploadController {
     }
 
     /**
-	 * フォルダを作成
+	 * フォルダを作成します
 	 */
     private void createDirectory() {
     	Path path = Paths.get("C:/upload/files");
@@ -61,7 +61,7 @@ public class UploadController {
     }
 
     /**
-	 * ファイルを保存
+	 * ファイルを保存します
 	 * @param file ファイル
 	 */
     private void savefile(MultipartFile file) {
@@ -76,7 +76,7 @@ public class UploadController {
     }
 
     /**
-	 * 画像を保存
+	 * 画像を保存します
 	 * @param image 画像
 	 */
     private void savefiles(MultipartFile image) {
@@ -94,7 +94,7 @@ public class UploadController {
     }
     
     /**
-     * まずlocalhost:8080/firstでupload.htmlにアクセスするよう設定
+          * まずlocalhost:8080/firstでupload.htmlにアクセスするよう設定します
      * @return　upload.html
      */
     @RequestMapping("/first")
@@ -104,8 +104,8 @@ public class UploadController {
     }
     
     /**
-     * アップロードされた画像データを取得し、base64でエンコードする
-     * エンコードしたものを文字列に変更(同時に拡張子をここではjpegと指定)し次のhtmlに受け渡す
+          * アップロードされた画像データを取得し、base64でエンコードします
+          * エンコードしたものを文字列に変更(同時に拡張子をここではjpegと指定)し次のhtmlに受け渡します
      * @param imageForm アップロードされたデータ
      * @param model モデル
      * @return upload 画像入力画面

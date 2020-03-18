@@ -11,7 +11,7 @@ import com.jpa.demojpa.domain.History;
 import com.jpa.demojpa.domain.ResultRepository;
 
 /**
- * 結果画面のサービスクラス
+ * 結果画面のサービスクラスです
  */
 @Service
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class ResultService {
     private final ResultRepository resultRepository;
     
     /**
-     * 判定結果を登録します
+          * 判定結果を登録します
      * @param rgb 判定結果のRGB値
      * @param filePath 判定した画像のファイルパス
      * @param x 判定したX座標

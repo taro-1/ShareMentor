@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.jpa.demojpa.service.ResultService;
 
 /**
- * 結果画面のコントローラークラス
+ * 結果画面のコントローラークラスです
  */
 @Controller
 public class ResultController {
@@ -35,9 +35,18 @@ public class ResultController {
     
     @Autowired
     ResultService resultService;
+    
+    // 赤です
+    final String CharRed = "赤";
+    // 緑です
+    final String CharGreen = "緑";
+    // 青です
+    final String CharBlue = "青";
+    // 赤、緑、青が同値の場合の無しです
+    final String None = "なし";
 		    	
     /**
-     * 結果画面を表示します
+          * 結果画面を表示します
      * @param model モデル
      * @return result 結果画面
      */
@@ -72,14 +81,6 @@ public class ResultController {
         int red = color.getRed();
         int green = color.getGreen();
         int blue = color.getBlue();
-        // 赤です
-        final String CharRed = "赤";
-        // 緑です
-        final String CharGreen = "緑";
-        // 青です
-        final String CharBlue = "青";
-        // 赤、緑、青が同値の場合の無しです
-        final String None = "なし";
             
         int max = red;
         if(green > max) max = green;

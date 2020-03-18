@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemojpaApplication {
 
-	/**
-     * mainメソッド
-     * @param args 使用しない
+	/** 
+	 * mainメソッド
+     * @param args コマンドライン引数
      */
 	public static void main(String[] args) {
 		SpringApplication.run(DemojpaApplication.class, args);

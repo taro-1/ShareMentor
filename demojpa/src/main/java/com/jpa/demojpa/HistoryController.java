@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.jpa.demojpa.domain.HistoryRepository;
 
 /**
- * 履歴画面のコントローラークラス
+ * 履歴画面のコントローラークラスです
  */
 @Controller
 public class HistoryController {
