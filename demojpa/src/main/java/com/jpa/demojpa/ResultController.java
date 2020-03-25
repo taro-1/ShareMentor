@@ -37,13 +37,13 @@ public class ResultController {
     ResultService resultService;
     
     // 赤です
-    final String CharRed = "赤";
+    public final String CHAR_RED = "赤";
     // 緑です
-    final String CharGreen = "緑";
+    public final String CHAR_GREEN = "緑";
     // 青です
-    final String CharBlue = "青";
+    public final String CHAR_BLUE = "青";
     // 赤、緑、青が同値の場合の無しです
-    final String None = "なし";
+    public final String NONE = "なし";
 		    	
     /**
           * 結果画面を表示します
@@ -86,13 +86,13 @@ public class ResultController {
         if(green > max) max = green;
         if(blue > max) max = blue;
             
-        String component = CharRed;
-        if(max == green) component = CharGreen;
-        if(max == blue) component = CharBlue;
+        String component = CHAR_RED;
+        if(max == green) component = CHAR_GREEN;
+        if(max == blue) component = CHAR_BLUE;
            
-        if(red == blue)component = None;
-        if(blue == green)component = None;
-        if(green == red)component = None;
+        if(red == blue)component = NONE;
+        if(blue == green)component = NONE;
+        if(green == red)component = NONE;
             
         model.addAttribute("component", component);
             

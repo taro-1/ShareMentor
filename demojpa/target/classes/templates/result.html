@@ -3,18 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>result.html</title>
+    <style type="text/css">
+      p{
+      height: 5px;
+      }
+    </style>
 </head>
 <body>
-<form method="post" action="result" style="text-align:center;">
-  <p>判定した画像</p>
-  <p th:text="${image}"/></p>
-  <p>色を判定した位置</p>
-  <p th:text="'X : ' + ${x} + ' Y : ' + ${y}"/></p>
-  <p>最も強い三原色の成分</p>
-  <p th:text="${component}"></p>
-  <p>RGB値</p>
-  <p th:text="${rgb}"></p>
-</form>
+<div align="center">
+<table border="1">
+<tr>
+  <td align="center">判定した画像</td>
+</tr>
+<tr>
+  <td align="center" th:text="${image}"/>
+</tr>
+<tr>
+  <td align="center">色を判定した位置</td>
+</tr>
+<tr>
+  <td align="center" th:text="'X : ' + ${x} + ' Y : ' + ${y}"/>
+</tr>
+<tr>
+  <td align="center">最も強い三原色の成分</td>
+</tr>
+<tr>
+  <td align="center" th:text="${component}">
+</tr>
+<tr>
+  <td align="center">RGB値</td>
+</tr>
+<tr>
+  <td align="center" th:text="${rgb}">
+</tr>
+</table>
+</div>
+<p>
   <form method="post" action="first" style="text-align:center;">
     <input type="submit" value="戻る" />
   </form>
