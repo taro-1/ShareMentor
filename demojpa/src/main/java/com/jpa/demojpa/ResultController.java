@@ -24,6 +24,21 @@ import com.jpa.demojpa.service.ResultService;
 @Controller
 public class ResultController {
 
+    // 赤です
+    public final String CHAR_RED = "赤";
+    // 緑です
+    public final String CHAR_GREEN = "緑";
+    // 青です
+    public final String CHAR_BLUE = "青";
+    // 赤、緑、青が同値の場合の無しです
+    public final String NONE = "なし";
+	
+    /**
+     * 結果画面のサービスクラスです
+     */
+    @Autowired
+    ResultService resultService;
+    
 	/**
 	 * イメージフォームです
 	 * @return イメージフォーム
@@ -33,17 +48,6 @@ public class ResultController {
         return new ImageForm();
     }
     
-    @Autowired
-    ResultService resultService;
-    
-    // 赤です
-    public final String CHAR_RED = "赤";
-    // 緑です
-    public final String CHAR_GREEN = "緑";
-    // 青です
-    public final String CHAR_BLUE = "青";
-    // 赤、緑、青が同値の場合の無しです
-    public final String NONE = "なし";
 		    	
     /**
           * 結果画面を表示します

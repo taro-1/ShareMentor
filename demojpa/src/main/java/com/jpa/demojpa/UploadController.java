@@ -24,9 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 
 	/**
-	 * ファイル名本体を取得します
+	 * ファイルの拡張子を取得します
 	 * @param filename ファイル名
-	 * @return filename ファイル名本体
+	 * @return ファイルの拡張子
 	 */
 	private String getExtension(String filename) {
         int dot = filename.lastIndexOf(".");
