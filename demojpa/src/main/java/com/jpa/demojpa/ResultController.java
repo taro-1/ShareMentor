@@ -24,13 +24,13 @@ import com.jpa.demojpa.service.ResultService;
 @Controller
 public class ResultController {
 
-    // 赤です
+    // 三原色の中で最大の色を判定するための赤です
     public final String CHAR_RED = "赤";
-    // 緑です
+    // 三原色の中で最大の色を判定するための緑です
     public final String CHAR_GREEN = "緑";
-    // 青です
+    // 三原色の中で最大の色を判定するための青です
     public final String CHAR_BLUE = "青";
-    // 赤、緑、青が同値の場合の無しです
+    // 三原色が同値の場合の無しです
     public final String NONE = "なし";
 	
     /**

@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * historyテーブルと接続するためのカラムを定義するクラスです
+ * historyテーブルのカラムを定義するクラスです
  */
 @Data
 @Entity
