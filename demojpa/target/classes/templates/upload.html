@@ -12,26 +12,27 @@
 	    border: 2px solid #000000;
 	    width: 800px;
 	    height: 500px;
-	    align="center"
-	  }p{
-        text-align: center;
-      }
+	    text-align: center;
+	  }body {  
+        text-align: center;  
+      } 
     </style>
 </head>
 
 <body>
     <form th:action="@{/upload}" th:object="${imageForm}" method="POST" enctype="multipart/form-data">
+     <p align="left">
             ファイルを選択： <input th:field="*{image}" type="file" /><br /> 
-     <div align="center">
+     <h1 th:text="${Msg}">XXXXX</h1>
+     <div>
      <img th:src="${base64image}"/>
      </div>
-     <p>
      <input type="submit" value="表示する" /> 
      </form>
-    <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data" style="position: absolute; left: 60%; top: 1%" >
+    <form th:action="@{/result}" th:object="${imageForm}" method="POST" enctype="multipart/form-data" style="position: absolute; left: 60%; top: 3%" >
        　  <input type="submit" value="色を判定" />
     </form>
-    <form method="post" action="menu" style="position: absolute; left: 80%; top: 1%">
+    <form method="post" action="menu" style="position: absolute; left: 70%; top: 3%">
        　  <input type="submit" value="メニュー画面へ" />
     </form>
 </body>

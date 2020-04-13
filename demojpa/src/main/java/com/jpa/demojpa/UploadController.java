@@ -8,8 +8,11 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,12 +20,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javassist.NotFoundException;
+
 /**
  * 画像入力画面のコントローラークラスです
  */
 @Controller
 public class UploadController {
 
+	@Autowired
+	protected MessageSource messageSource;
+	
 	/**
 	 * ファイルの拡張子を取得します
 	 * @param filename ファイル名
@@ -63,25 +71,28 @@ public class UploadController {
     /**
 	 * ファイルを保存します
 	 * @param file ファイル
+     * @throws NotFoundException 
 	 */
-    private void savefile(MultipartFile file) {
+    private void savefile(MultipartFile file, Model model) throws NotFoundException {
+    	createDirectory();
     	String filename = getUploadFileName(file.getOriginalFilename());
     	Path uploadfile = Paths.get("C:/upload/files/" + filename);
     	try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
     		byte[] bytes = file.getBytes();
     		os.write(bytes);
     	} catch (IOException e) {
-    			System.out.println("例外が発生しました");
+    		model.addAttribute("Msg", messageSource.getMessage("message.err", null, Locale.JAPAN));
     	}
     }
 
     /**
 	 * 画像を保存します
 	 * @param image 画像
+     * @throws NotFoundException 
 	 */
-    private void savefiles(MultipartFile image) {
+    private void savefiles(MultipartFile image, Model model) throws NotFoundException {
     	createDirectory();
-    	savefile(image);
+    	savefile(image, model);
     }
 	
     /**
@@ -113,7 +124,7 @@ public class UploadController {
      */
     @PostMapping("/upload")
     public String upload(ImageForm imageForm, Model model) throws Exception {
-    	savefiles(imageForm.getImage());
+    	savefiles(imageForm.getImage(), model);
         StringBuffer data = new StringBuffer();
         String base64 = new String(Base64.encodeBase64(imageForm.getImage().getBytes()),"ASCII");
         data.append("data:image/jpeg;base64,");
