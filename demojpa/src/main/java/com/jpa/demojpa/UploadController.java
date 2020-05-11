@@ -80,7 +80,7 @@ public class UploadController {
     	try (OutputStream os = Files.newOutputStream(uploadfile, StandardOpenOption.CREATE)) {
     		byte[] bytes = file.getBytes();
     		os.write(bytes);
-    	} catch (IOException e) {
+    	} catch (SampleException e) {
     		model.addAttribute("Msg", messageSource.getMessage("message.err", null, Locale.JAPAN));
     	}
     }
