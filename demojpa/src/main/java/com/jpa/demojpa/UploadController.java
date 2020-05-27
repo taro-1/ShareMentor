@@ -71,9 +71,9 @@ public class UploadController {
     /**
 	 * ファイルを保存します
 	 * @param file ファイル
-     * @throws NotFoundException 
+     * @throws IOException 
 	 */
-    private void savefile(MultipartFile file, Model model) throws NotFoundException {
+    private void savefile(MultipartFile file, Model model) throws SampleException {
     	createDirectory();
     	String filename = getUploadFileName(file.getOriginalFilename());
     	Path uploadfile = Paths.get("C:/upload/files/" + filename);
@@ -89,8 +89,9 @@ public class UploadController {
 	 * 画像を保存します
 	 * @param image 画像
      * @throws NotFoundException 
+     * @throws IOException 
 	 */
-    private void savefiles(MultipartFile image, Model model) throws NotFoundException {
+    private void savefiles(MultipartFile image, Model model) throws IOException {
     	createDirectory();
     	savefile(image, model);
     }
