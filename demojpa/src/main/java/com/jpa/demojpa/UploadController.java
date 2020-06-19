@@ -73,7 +73,7 @@ public class UploadController {
 	 * @param file ファイル
      * @throws IOException 
 	 */
-    private void savefile(MultipartFile file, Model model) throws SampleException {
+    private void savefile(MultipartFile file, Model model) throws IOException {
     	createDirectory();
     	String filename = getUploadFileName(file.getOriginalFilename());
     	Path uploadfile = Paths.get("C:/upload/files/" + filename);
